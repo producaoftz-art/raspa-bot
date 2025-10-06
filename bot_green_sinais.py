@@ -1,3 +1,4 @@
+import os
 import asyncio
 import random
 from datetime import datetime, timedelta
@@ -6,8 +7,14 @@ from telegram import Bot
 from telegram.constants import ChatAction
 
 # 🔐 CONFIGURAÇÕES
-TOKEN = "7919057077:AAGMcWdTfhPxTmd8gUFhwveCxflr7PLvWEA"
-CHAT_ID = "6897078954"
+# Lendo o TOKEN e CHAT_ID das variáveis de ambiente
+TOKEN = os.getenv("TOKEN")
+CHAT_ID = os.getenv("CHAT_ID")
+
+if not TOKEN or not CHAT_ID:
+    print("Erro: As variáveis de ambiente TOKEN e CHAT_ID não foram configuradas.")
+    print("Por favor, adicione-as nas configurações do Render.")
+    exit()
 
 bot = Bot(token=TOKEN)
 
